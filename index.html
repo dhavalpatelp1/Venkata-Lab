@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC LAB</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0c0f14">
+    <link rel="icon" href="/icon-192.png">
+    <style>
+      body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial; background:#0c0f14; color:#e9eef3; }
+      .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+      header { display:flex; align-items:center; justify-content:space-between; padding: 12px 0; }
+      header h1 { margin:0; font-size: 20px; letter-spacing: .5px; }
+      header .actions { display:flex; gap:8px; }
+      button { background:#1b6cf2; border:none; color:white; padding:10px 14px; border-radius:8px; cursor:pointer; }
+      button.ghost { background:#1a1f29; color:#e9eef3; border:1px solid #2a3242; }
+      a { color:#7fb3ff; }
+      .card { background:#0f141c; border:1px solid #1f2a3a; border-radius:12px; padding:16px; margin-bottom:16px; }
+      input, select { background:#0c1118; color:#e9eef3; border:1px solid #2a3242; padding:8px; border-radius:8px; }
+      label { font-size: 12px; color:#aab8cc; display:block; margin-bottom:6px; }
+      .grid { display:grid; gap:12px; }
+      .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .grid.cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+      @media (max-width: 800px){ .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; } }
+      .lane { border-left:4px solid #1b6cf2; padding-left:12px; }
+      .lane.overdue { border-color:#ff5b5b; }
+      .lane.soon { border-color:#ffb020; }
+      .pill { font-size: 12px; padding:4px 8px; border-radius:9999px; background:#1a1f29; border:1px solid #2a3242; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
