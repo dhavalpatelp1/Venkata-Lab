@@ -1,67 +1,66 @@
-# VC LAB (PWA)
+# VC Lab Incubation Master
 
-A **batch-first incubation tracker** with timers, live board, plate view, label printing, and **Calendar sync (Google / ICS)**. Offline-first; optional Supabase sync.
+An offline-first laboratory incubation and batch-tracking application designed to improve scheduling, sample traceability, and reproducibility in experimental workflows.
+
+## Research workflow problem
+
+Laboratory incubation experiments often involve multiple samples, temperatures, time points, plate layouts, and reminders. This application brings those tasks into one structured interface so researchers can plan and monitor batches with fewer manual tracking errors.
+
+## Features
+
+- Batch-first creation of multiple samples
+- Incubation conditions including temperature, RPM, and duration
+- Live board for current, upcoming, and overdue samples
+- Plate layouts for 6-, 24-, and 96-well formats
+- Local notifications and calendar export
+- Google Calendar integration using client-side authentication
+- PDF label generation with QR codes
+- Offline-capable Progressive Web App
+- Local browser storage with optional Supabase synchronisation
+
+## Technology
+
+- React
+- TypeScript
+- Vite
+- IndexedDB/local browser storage
+- jsPDF and QR-code generation
+- Optional Supabase integration
 
 ## Quick start
+
 ```bash
-npm i
+npm install
 npm run dev
 ```
 
-Open http://localhost:5173
+Open `http://localhost:5173`.
 
-## Features in this scaffold
-- Batch-first creation of N samples with base conditions (temp, rpm, duration)
-- Live board: Now / Next 60 min / Overdue lanes
-- Plate view (6 / 24 / 96)
-- Local notifications (best-effort) + **Calendar sync** for reliable reminders
-- Label PDF with QR codes
-- PWA offline caching
-- Optional Supabase persistence
+## Production build
 
-## Google Calendar (client-only)
-1. Create a **Google Cloud** project → enable **Google Calendar API**.
-2. Configure **OAuth consent screen** (External → test mode OK).
-3. Create OAuth **Web** client → add `http://localhost:5173` as an authorized origin.
-4. Set env: `VITE_GOOGLE_CLIENT_ID=...`
-5. Run dev and click **Add to Google Calendar**.
+```bash
+npm run build
+npm run preview
+```
 
-> This uses **Google Identity Services** in the browser with PKCE; no server needed.
+## Optional integrations
 
-## ICS export
-Click **Download ICS** and import to Google/Outlook if you prefer manual 1‑way sync.
+### Google Calendar
 
-## Supabase (optional)
-- Create project → copy **URL** and **anon key** into `.env`
-- Create table `batches` with JSON column `samples`:
-  ```sql
-  create table if not exists public.batches (
-    id text primary key,
-    name text,
-    project text,
-    created_at timestamptz,
-    plate_type text,
-    samples jsonb
-  );
-  alter table public.batches enable row level security;
-  create policy "read all" on public.batches for select using (true);
-  create policy "upsert all" on public.batches for
-    insert with check (true), update using (true);
-  ```
+Create a Google Cloud project, enable the Google Calendar API, configure an OAuth web client, and provide the client ID through an environment variable:
 
-## Deploy to Vercel (or Netlify)
-- Push this repo to GitHub.
-- In Vercel, **Import Project** → set **Environment Variables**.
-- Build command: `npm run build`. Output: `dist`.
-- Add `public/sw.js` and `public/manifest.webmanifest` in the deployment (Vite copies `public/*`).
+```bash
+VITE_GOOGLE_CLIENT_ID=your_client_id
+```
 
-## Roadmap (next steps)
-- Two-way edits + event IDs from Google
-- Team mode, conflict guard
-- Resource tracking and tolerance bands
-- Outlook (MSAL) integration
-- Background worker (Supabase Edge Functions or Vercel Cron) for server-backed alerts
+### Supabase
 
----
+The application can be extended to synchronise batches across devices using Supabase. Keep all credentials in a local `.env` file and never commit them to version control.
 
-MIT © 2025 VC LAB
+## Research-use note
+
+This is a workflow-support tool, not a validated laboratory information management system. Researchers should verify incubation conditions, labels, and schedules independently before use.
+
+## Project role
+
+Conceptualised, specified, tested, and iteratively developed to address practical laboratory scheduling and sample-tracking needs.
