@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software in research, please cite it using the metadata below."
+title: "VC Lab Incubation Master"
+type: software
+authors:
+  - family-names: Patel
+    given-names: Dhaval
+repository-code: "https://github.com/dhavalpatelp1/Venkata-Lab"
+abstract: "An offline-first laboratory incubation and batch-tracking application for scheduling, sample traceability, labels, plate layouts, and calendar integration."
